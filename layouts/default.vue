@@ -5,9 +5,26 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6">
           <div class="flex justify-between items-center py-4 md:justify-start md:space-x-10">
             <div class="w-0 flex-1 flex">
-              <a href="#" class="inline-flex">
+              <nuxt-link :to="{ name: 'index' }" class="inline-flex">
                 <img class="h-8 w-auto sm:h-10" src="https://tailwindui.com/img/logos/v1/workflow-mark-on-white.svg" alt="Workflow">
-              </a>
+              </nuxt-link>
+              <nav class="ml-10 hidden md:flex space-x-10">
+                <nuxt-link :to="{ name: 'index' }" class="text-gray-500 inline-flex items-center space-x-2 text-base leading-6 font-medium hover:text-gray-900 transition ease-in-out duration-150">
+                  Hommes
+                </nuxt-link>
+                <nuxt-link :to="{ name: 'index' }" class="text-gray-500 inline-flex items-center space-x-2 text-base leading-6 font-medium hover:text-gray-900 transition ease-in-out duration-150">
+                  Femmes
+                </nuxt-link>
+                <nuxt-link :to="{ name: 'brands' }" class="text-gray-500 inline-flex items-center space-x-2 text-base leading-6 font-medium hover:text-gray-900 transition ease-in-out duration-150">
+                  Marques
+                </nuxt-link>
+                <nuxt-link :to="{ name: 'categories' }" class="text-gray-500 inline-flex items-center space-x-2 text-base leading-6 font-medium hover:text-gray-900 transition ease-in-out duration-150">
+                  Catégories
+                </nuxt-link>
+                <nuxt-link :to="{ name: 'shops' }" class="text-gray-500 inline-flex items-center space-x-2 text-base leading-6 font-medium hover:text-gray-900 transition ease-in-out duration-150">
+                  Boutiques
+                </nuxt-link>
+              </nav>
             </div>
             <div class="-mr-2 -my-2 md:hidden">
               <button type="button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-500 transition duration-150 ease-in-out">
@@ -17,24 +34,15 @@
                 </svg>
               </button>
             </div>
-            <nav class="hidden md:flex space-x-10">
-              <a href="#" class="text-gray-500 inline-flex items-center space-x-2 text-base leading-6 font-medium hover:text-gray-900 transition ease-in-out duration-150">
-                Solutions
-              </a>
-              <a href="#" class="text-base leading-6 font-medium text-gray-500 hover:text-gray-900 transition ease-in-out duration-150">
-                Pricing
-              </a>
-              <a href="#" class="text-base leading-6 font-medium text-gray-500 hover:text-gray-900 transition ease-in-out duration-150">
-                Docs
-              </a>
-              <a href="#" class="text-gray-500 inline-flex items-center space-x-2 text-base leading-6 font-medium hover:text-gray-900 transition ease-in-out duration-150">
-                More
-              </a>
-            </nav>
             <div class="hidden md:flex items-center justify-end space-x-8 md:flex-1 lg:w-0">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                <path fill-rule="evenodd" d="M10 2a4 4 0 00-4 4v1H5a1 1 0 00-.994.89l-1 9A1 1 0 004 18h12a1 1 0 00.994-1.11l-1-9A1 1 0 0015 7h-1V6a4 4 0 00-4-4zm2 5V6a2 2 0 10-4 0v1h4zm-6 3a1 1 0 112 0 1 1 0 01-2 0zm7-1a1 1 0 100 2 1 1 0 000-2z" clip-rule="evenodd" />
-              </svg>
+              <a href="#" class="whitespace-no-wrap text-base leading-6 font-medium text-gray-500 hover:text-gray-900 transition ease-in-out duration-150">
+                Sign in
+              </a>
+              <span class="inline-flex rounded-md shadow-sm">
+                <a href="#" class="whitespace-no-wrap inline-flex items-center justify-center px-4 py-2 border border-transparent text-base leading-6 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700 transition ease-in-out duration-150">
+                  Sign up
+                </a>
+              </span>
             </div>
           </div>
         </div>
