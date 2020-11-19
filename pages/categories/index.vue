@@ -25,106 +25,27 @@
             placeholder="Search"
           />
         </div>
-        <p class="mt-4 text-lg leading-7 text-gray-500">Vous pouvez sélectionner une catégorie pour retrouver l'ensemble des produits disponibles à la vente sur Baloubet.</p>
+        <p class="mt-4 text-lg leading-7 text-gray-500">Vous pouvez sélectionner une catégorie pour retrouver les produits disponibles à la vente par l'ensemble nos vendeurs sur Baloubet.</p>
       </div>
-      <dl class="mt-12 space-y-10 sm:space-y-0 sm:grid sm:grid-cols-2 sm:gap-x-6 sm:gap-y-12 lg:grid-cols-4 lg:gap-x-8">
-        <div class="flex space-x-3">
-          <!-- Heroicon name: check -->
-          <svg class="flex-shrink-0 h-6 w-6 text-green-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-          </svg>
-          <div class="space-y-2">
-            <dt class="text-lg leading-6 font-medium text-gray-900">Invite team members</dt>
-            <dd class="flex space-x-3 lg:py-0 lg:pb-4">
-              <span class="text-base leading-6 text-gray-500">Tempor tellus in aliquet eu et sit nulla tellus. Suspendisse est, molestie blandit quis ac. Lacus.</span>
-            </dd>
-          </div>
+      <div class="pt-2 pb-6 md:py-6">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
+          <ul class="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+
+            <li v-for="categorie in allCategories" :key="categorie.id" :value="categorie.id" class="col-span-1 flex flex-col text-center">
+              <nuxt-link :to="{ name: 'categories-eid', params: { eid: categorie.id }}">
+                <div class="-mt-px flex">
+                  <div class="w-0 flex-1 flex">
+                    <div class="relative -mr-px w-0 flex-1 inline-flex items-center justify-center py-2 text-sm leading-5 text-gray-700 font-medium border border-transparent rounded-bl-lg rounded-br-lg hover:text-gray-500 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 focus:z-10 transition ease-in-out duration-150">
+                      <dt class="text-lg leading-6 font-medium text-gray-900">{{ categorie.name }}</dt>
+                    </div>
+                  </div>
+                </div>
+              </nuxt-link>
+            </li>
+
+          </ul>
         </div>
-        <div class="flex space-x-3">
-          <!-- Heroicon name: check -->
-          <svg class="flex-shrink-0 h-6 w-6 text-green-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-          </svg>
-          <div class="space-y-2">
-            <dt class="text-lg leading-6 font-medium text-gray-900">Notifications</dt>
-            <dd class="flex space-x-3">
-              <span class="text-base leading-6 text-gray-500">Ornare donec rhoncus vitae nisl velit, neque, mauris dictum duis. Nibh urna non parturient.</span>
-            </dd>
-          </div>
-        </div>
-        <div class="flex space-x-3">
-          <!-- Heroicon name: check -->
-          <svg class="flex-shrink-0 h-6 w-6 text-green-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-          </svg>
-          <div class="space-y-2">
-            <dt class="text-lg leading-6 font-medium text-gray-900">List view</dt>
-            <dd class="flex space-x-3">
-              <span class="text-base leading-6 text-gray-500">Etiam cras augue ornare pretium sit malesuada morbi orci, venenatis. Dictum lacus.</span>
-            </dd>
-          </div>
-        </div>
-        <div class="flex space-x-3">
-          <!-- Heroicon name: check -->
-          <svg class="flex-shrink-0 h-6 w-6 text-green-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-          </svg>
-          <div class="space-y-2">
-            <dt class="text-lg leading-6 font-medium text-gray-900">Boards</dt>
-            <dd class="flex space-x-3">
-              <span class="text-base leading-6 text-gray-500">Interdum quam pulvinar turpis tortor, egestas quis diam amet, natoque. Mauris sagittis.</span>
-            </dd>
-          </div>
-        </div>
-        <div class="flex space-x-3">
-          <!-- Heroicon name: check -->
-          <svg class="flex-shrink-0 h-6 w-6 text-green-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-          </svg>
-          <div class="space-y-2">
-            <dt class="text-lg leading-6 font-medium text-gray-900">Keyboard shortcuts</dt>
-            <dd class="flex space-x-3">
-              <span class="text-base leading-6 text-gray-500">Ullamcorper in ipsum ac feugiat. Senectus at aliquam vulputate mollis nec. In at risus odio.</span>
-            </dd>
-          </div>
-        </div>
-        <div class="flex space-x-3">
-          <!-- Heroicon name: check -->
-          <svg class="flex-shrink-0 h-6 w-6 text-green-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-          </svg>
-          <div class="space-y-2">
-            <dt class="text-lg leading-6 font-medium text-gray-900">Reporting</dt>
-            <dd class="flex space-x-3 lg:border-t-0 lg:py-0 lg:pb-4">
-              <span class="text-base leading-6 text-gray-500">Magna a vel sagittis aliquam eu amet. Et lorem auctor quam nunc odio. Sed bibendum.</span>
-            </dd>
-          </div>
-        </div>
-        <div class="flex space-x-3">
-          <!-- Heroicon name: check -->
-          <svg class="flex-shrink-0 h-6 w-6 text-green-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-          </svg>
-          <div class="space-y-2">
-            <dt class="text-lg leading-6 font-medium text-gray-900">Calendars</dt>
-            <dd class="flex space-x-3">
-              <span class="text-base leading-6 text-gray-500">Sed mi, dapibus turpis orci posuere integer. A porta viverra posuere adipiscing turpis.</span>
-            </dd>
-          </div>
-        </div>
-        <div class="flex space-x-3">
-          <!-- Heroicon name: check -->
-          <svg class="flex-shrink-0 h-6 w-6 text-green-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-          </svg>
-          <div class="space-y-2">
-            <dt class="text-lg leading-6 font-medium text-gray-900">Mobile app</dt>
-            <dd class="flex space-x-3">
-              <span class="text-base leading-6 text-gray-500">Quisque sapien nunc nisl eros. Facilisis sagittis maecenas id dignissim tristique proin sed.</span>
-            </dd>
-          </div>
-        </div>
-      </dl>
+      </div>
     </div>
   </div>
 </template>
@@ -135,15 +56,15 @@ import gql from "graphql-tag";
 export default {
   data() {
     return {
-      allBrands: [],
+      allCategories: [],
       errors: [],
     }
   },
   apollo: {
-    allBrands: {
+    allCategories: {
       query: gql`
         query {
-          allBrands {
+          allCategories {
             id
             name
           }

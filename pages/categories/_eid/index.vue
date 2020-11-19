@@ -16,25 +16,27 @@
         </div>
       </div>
       <div class="mt-12 lg:mt-0 lg:col-span-2">
-        <dl v-for="tag in category.tag" class="space-y-10 sm:space-y-0 sm:grid sm:grid-cols-2 sm:grid-rows-4 sm:grid-flow-col sm:gap-x-6 sm:gap-y-10 lg:gap-x-8">
-
-            <div v-for="product in tag.product" v-if="product.status === 'Live'" class="flex">
-              <nuxt-link :to="{ name: 'products-id', params: { id: product.id }}">
-                <img class="p-6" :src="product.variant[0].pictureUrl">
-                <div class="-mt-px flex">
-                  <div class="w-0 flex-1 flex">
-                    <div class="relative -mr-px w-0 flex-1 inline-flex items-center justify-center py-2 text-sm leading-5 text-gray-700 font-medium border border-transparent rounded-bl-lg rounded-br-lg hover:text-gray-500 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 focus:z-10 transition ease-in-out duration-150">
-                      <div>
-                        <p class="mt-1 text-sm leading-5 text-gray-500">{{ limit(product.name, 35) }}</p>
-                        <p class="text-sm py-2 leading-5 font-medium text-black">{{ product.variant[0].price }} €</p>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
+          <ul class="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3">
+            <template v-for="tag in category.tag">
+              <li v-for="product in tag.product" v-if="product.status === 'Live'" class="col-span-1 flex flex-col text-center bg-white shadow border-solid border border-gray-100">
+                <nuxt-link :to="{ name: 'products-id', params: { id: product.id }}">
+                  <img class="p-6" :src="product.variant[0].pictureUrl">
+                  <div class="-mt-px flex">
+                    <div class="w-0 flex-1 flex">
+                      <div class="relative -mr-px w-0 flex-1 inline-flex items-center justify-center py-2 text-sm leading-5 text-gray-700 font-medium border border-transparent rounded-bl-lg rounded-br-lg hover:text-gray-500 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 focus:z-10 transition ease-in-out duration-150">
+                        <div>
+                          <p class="mt-1 text-sm leading-5 text-gray-500">{{ limit(product.name, 35) }}</p>
+                          <p class="text-sm py-2 leading-5 font-medium text-black">{{ product.variant[0].price }} €</p>
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
-              </nuxt-link>
-            </div>
-
-        </dl>
+                </nuxt-link>
+              </li>
+            </template>
+          </ul>
+        </div>
       </div>
     </div>
   </div>

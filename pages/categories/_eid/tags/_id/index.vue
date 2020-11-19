@@ -16,127 +16,27 @@
         </div>
       </div>
       <div class="mt-12 lg:mt-0 lg:col-span-2">
-        <dl class="space-y-10 sm:space-y-0 sm:grid sm:grid-cols-2 sm:grid-rows-4 sm:grid-flow-col sm:gap-x-6 sm:gap-y-10 lg:gap-x-8">
-          <div class="flex">
-            <!-- Heroicon name: check -->
-            <svg class="flex-shrink-0 h-6 w-6 text-green-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-            </svg>
-            <div class="ml-3">
-              <dt class="text-lg leading-6 font-medium text-gray-900">
-                Invite team members
-              </dt>
-              <dd class="mt-2 text-base text-gray-500">
-                You can manage phone, email and chat conversations all from a single mailbox.
-              </dd>
-            </div>
-          </div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
+          <ul class="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3">
 
-          <div class="flex">
-            <!-- Heroicon name: check -->
-            <svg class="flex-shrink-0 h-6 w-6 text-green-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-            </svg>
-            <div class="ml-3">
-              <dt class="text-lg leading-6 font-medium text-gray-900">
-                List view
-              </dt>
-              <dd class="mt-2 text-base text-gray-500">
-                You can manage phone, email and chat conversations all from a single mailbox.
-              </dd>
-            </div>
-          </div>
+            <li v-for="product in tag.product" v-if="product.status === 'Live'" class="col-span-1 flex flex-col text-center bg-white shadow border-solid border border-gray-100">
+              <nuxt-link :to="{ name: 'products-id', params: { id: product.id }}">
+                <img class="p-6 resize-none" :src="product.variant[0].pictureUrl">
+                <div class="-mt-px flex">
+                  <div class="w-0 flex-1 flex">
+                    <div class="relative -mr-px w-0 flex-1 inline-flex items-center justify-center py-2 text-sm leading-5 text-gray-700 font-medium border border-transparent rounded-bl-lg rounded-br-lg hover:text-gray-500 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 focus:z-10 transition ease-in-out duration-150">
+                      <div>
+                        <p class="mt-1 text-sm leading-5 text-gray-500">{{ limit(product.name, 35) }}</p>
+                        <p class="text-sm py-2 leading-5 font-medium text-black">{{ product.variant[0].price }} €</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </nuxt-link>
+            </li>
 
-          <div class="flex">
-            <!-- Heroicon name: check -->
-            <svg class="flex-shrink-0 h-6 w-6 text-green-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-            </svg>
-            <div class="ml-3">
-              <dt class="text-lg leading-6 font-medium text-gray-900">
-                Keyboard shortcuts
-              </dt>
-              <dd class="mt-2 text-base text-gray-500">
-                You can manage phone, email and chat conversations all from a single mailbox.
-              </dd>
-            </div>
-          </div>
-
-          <div class="flex">
-            <!-- Heroicon name: check -->
-            <svg class="flex-shrink-0 h-6 w-6 text-green-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-            </svg>
-            <div class="ml-3">
-              <dt class="text-lg leading-6 font-medium text-gray-900">
-                Calendars
-              </dt>
-              <dd class="mt-2 text-base text-gray-500">
-                You can manage phone, email and chat conversations all from a single mailbox.
-              </dd>
-            </div>
-          </div>
-
-          <div class="flex">
-            <!-- Heroicon name: check -->
-            <svg class="flex-shrink-0 h-6 w-6 text-green-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-            </svg>
-            <div class="ml-3">
-              <dt class="text-lg leading-6 font-medium text-gray-900">
-                Notifications
-              </dt>
-              <dd class="mt-2 text-base text-gray-500">
-                Find what you need with advanced filters, bulk actions, and quick views.
-              </dd>
-            </div>
-          </div>
-
-          <div class="flex">
-            <!-- Heroicon name: check -->
-            <svg class="flex-shrink-0 h-6 w-6 text-green-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-            </svg>
-            <div class="ml-3">
-              <dt class="text-lg leading-6 font-medium text-gray-900">
-                Boards
-              </dt>
-              <dd class="mt-2 text-base text-gray-500">
-                Find what you need with advanced filters, bulk actions, and quick views.
-              </dd>
-            </div>
-          </div>
-
-          <div class="flex">
-            <!-- Heroicon name: check -->
-            <svg class="flex-shrink-0 h-6 w-6 text-green-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-            </svg>
-            <div class="ml-3">
-              <dt class="text-lg leading-6 font-medium text-gray-900">
-                Reporting
-              </dt>
-              <dd class="mt-2 text-base text-gray-500">
-                Find what you need with advanced filters, bulk actions, and quick views.
-              </dd>
-            </div>
-          </div>
-
-          <div class="flex">
-            <!-- Heroicon name: check -->
-            <svg class="flex-shrink-0 h-6 w-6 text-green-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-            </svg>
-            <div class="ml-3">
-              <dt class="text-lg leading-6 font-medium text-gray-900">
-                Mobile app
-              </dt>
-              <dd class="mt-2 text-base text-gray-500">
-                Find what you need with advanced filters, bulk actions, and quick views.
-              </dd>
-            </div>
-          </div>
-        </dl>
+          </ul>
+        </div>
       </div>
     </div>
   </div>
@@ -149,6 +49,7 @@ export default {
   data() {
     return {
       category: {},
+      tag: {},
       errors: [],
     }
   },
@@ -176,6 +77,29 @@ export default {
         return { id: this.$route.params.eid }
       },
     },
-  }
+    tag: {
+      query: gql`
+        query($id: ID!) {
+          tag(id: $id) {
+            id
+            name
+            product {
+              id
+              name
+              status
+              variant {
+                id
+                price
+                pictureUrl
+              }
+            }
+          }
+        }
+      `,
+      variables() {
+        return { id: this.$route.params.id }
+      },
+    },
+  },
 }
 </script>
