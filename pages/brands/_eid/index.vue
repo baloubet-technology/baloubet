@@ -92,7 +92,7 @@ export default {
         }
       `,
       variables() {
-        return { id: this.$route.params.id }
+        return { id: this.$route.params.eid }
       },
     },
   }

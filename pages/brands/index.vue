@@ -32,7 +32,7 @@
           <ul class="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
 
             <li v-for="brand in allBrands" :key="brand.id" :value="brand.id" class="col-span-1 flex flex-col text-center">
-              <nuxt-link :to="{ name: 'brands-id', params: { id: brand.id }}">
+              <nuxt-link :to="{ name: 'brands-eid', params: { eid: brand.id }}">
                 <div class="-mt-px flex">
                   <div class="w-0 flex-1 flex">
                     <div class="relative -mr-px w-0 flex-1 inline-flex items-center justify-center py-2 text-sm leading-5 text-gray-700 font-medium border border-transparent rounded-bl-lg rounded-br-lg hover:text-gray-500 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 focus:z-10 transition ease-in-out duration-150">

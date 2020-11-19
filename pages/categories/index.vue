@@ -128,3 +128,28 @@
     </div>
   </div>
 </template>
+
+<script>
+import gql from "graphql-tag";
+
+export default {
+  data() {
+    return {
+      allBrands: [],
+      errors: [],
+    }
+  },
+  apollo: {
+    allBrands: {
+      query: gql`
+        query {
+          allBrands {
+            id
+            name
+          }
+        }
+      `
+    },
+  }
+}
+</script>
