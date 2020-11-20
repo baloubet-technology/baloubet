@@ -31,17 +31,17 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
           <ul class="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
 
-            <li v-for="product in brand.product" v-if="product.status === 'Live'" class="col-span-1 flex flex-col text-center bg-white shadow border-solid border border-gray-100">
+            <li v-for="product in brand.product" v-if="product.status === 'Live'">
               <nuxt-link :to="{ name: 'products-id', params: { id: product.id }}">
-                <img class="p-6" :src="product.variant[0].pictureUrl">
-                <div class="-mt-px flex">
-                  <div class="w-0 flex-1 flex">
-                    <div class="relative -mr-px w-0 flex-1 inline-flex items-center justify-center py-2 text-sm leading-5 text-gray-700 font-medium border border-transparent rounded-bl-lg rounded-br-lg hover:text-gray-500 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 focus:z-10 transition ease-in-out duration-150">
-                      <div>
-                        <p class="mt-1 text-sm leading-5 text-gray-500">{{ limit(product.name, 35) }}</p>
-                        <p class="text-sm py-2 leading-5 font-medium text-black">{{ product.variant[0].price }} €</p>
-                      </div>
-                    </div>
+                <div class="max-w-xs bg-white shadow-lg rounded-lg overflow-hidden my-10">
+                  <div class="px-4 py-2">
+                    <h1 class="text-gray-900 font-bold text-3xl uppercase">{{ limit(product.name, 35) }}</h1>
+                    <p class="text-gray-600 text-sm mt-1">{{ limit(product.description, 90) }}</p>
+                  </div>
+                  <img class="h-56 w-full object-cover mt-2" src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80" alt="NIKE AIR">
+                  <div class="flex items-center justify-between px-4 py-2 bg-gray-900">
+                    <h1 class="text-gray-200 font-bold text-xl">{{ product.variant[0].price }} €</h1>
+                    <button class="px-3 py-1 bg-gray-200 text-sm text-gray-900 font-semibold rounded">Add to card</button>
                   </div>
                 </div>
               </nuxt-link>
@@ -80,6 +80,7 @@ export default {
             product {
               id
               name
+              description
               status
               variant {
                 id
