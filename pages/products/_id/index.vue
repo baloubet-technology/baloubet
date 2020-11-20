@@ -55,7 +55,7 @@
               <span class="mr-3">Size</span>
               <div class="relative">
                 <form method="post">
-                  <select @change="onChange($event)" v-model="variant" class="rounded border appearance-none border-gray-400 py-2 focus:outline-none focus:border-red-500 text-base pl-3 pr-10">
+                  <select @change="onChange($event)" v-model="key" class="rounded border appearance-none border-gray-400 py-2 focus:outline-none focus:border-red-500 text-base pl-3 pr-10">
                     <option v-for="variant in product.variant" :value="variant.id">{{ variant.color }} - {{ variant.size }} - {{ variant.price }} €</option>
                   </select>
                 </form>
@@ -96,7 +96,7 @@ export default {
   },
   methods: {
     onChange(event) {
-      this.$router.push({ name: 'products-id', params: { id: this.$route.params.eid, id: event.target.value } })
+      this.$router.push({ name: 'products-id', params: { id: this.$route.params.id }, query: { variant: event.target.value } })
     }
   },
   apollo: {
@@ -114,7 +114,7 @@ export default {
         }
       `,
       variables() {
-        return { id: this.$route.params.id }
+        return { id: this.$route.query.variant }
       },
     },
     product: {

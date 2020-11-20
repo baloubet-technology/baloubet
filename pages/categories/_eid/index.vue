@@ -23,7 +23,7 @@
               <li v-for="product in tag.product" v-if="product.status === 'Live'">
 
                 <div class="max-w-xs bg-white shadow-lg rounded-lg overflow-hidden">
-                  <nuxt-link :to="{ name: 'products-id', params: { id: product.id }, query: { plan: 'private' }}">
+                  <nuxt-link :to="{ name: 'products-id', params: { id: product.id }, query: { variant: product.variant[0].id }}">
                     <div class="px-4 py-2">
                       <p class="text-gray-900 font-bold uppercase">{{ limit(product.name, 18) }}</p>
                       <p class="text-gray-600 text-sm mt-1">{{ limit(product.description, 50) }}</p>
@@ -79,6 +79,7 @@ export default {
                 status
                 variant {
                   id
+                  sku
                   price
                   pictureUrl
                 }
