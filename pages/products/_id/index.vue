@@ -56,7 +56,7 @@
               <div class="relative">
                 <form method="post">
                   <select @change="onChange($event)" v-model="key" class="rounded border appearance-none border-gray-400 py-2 focus:outline-none focus:border-red-500 text-base pl-3 pr-10">
-                    <option v-for="variant in product.variant" :value="variant.id">{{ variant.color }} - {{ variant.size }} - {{ variant.price }} €</option>
+                    <option v-for="variantId in product.variant" v-if="variantId.status === 'Live'" :value="variantId.id">{{ variantId.color }} - {{ variantId.size }} - {{ variantId.price }} €</option>
                   </select>
                 </form>
                 <span class="absolute right-0 top-0 h-full w-10 text-center text-gray-600 pointer-events-none flex items-center justify-center">
@@ -129,6 +129,7 @@ export default {
               price
               size
               color
+              status
             }
             brand {
               id
