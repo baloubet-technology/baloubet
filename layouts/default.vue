@@ -77,13 +77,13 @@
         </div>
 
         <Nuxt />
-        <div class="grax_topbar w-full fixed bottom-0 left-0 z-10 bg-white">
-          <CookieBox />
-        </div>
       </main>
 
     </div>
     <footer class="bg-white">
+      <div class="grax_topbar w-full fixed bottom-0 left-0 z-10 bg-white">
+        <CookieBox />
+      </div>
       <div class="max-w-screen-xl mx-auto py-12 px-4 sm:px-6 lg:py-16 lg:px-8">
         <div class="pb-8 xl:grid xl:grid-cols-5 xl:gap-8">
           <div class="grid grid-cols-2 gap-8 xl:col-span-4">

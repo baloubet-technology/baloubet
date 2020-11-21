@@ -24,7 +24,7 @@
           From: "translate-x-0"
           To: "-translate-x-full"
       -->
-      <div class="relative flex-1 flex flex-col max-w-xs w-full pt-5 pb-4 bg-white">
+      <div v-click-outside="externalClick" class="relative flex-1 flex flex-col max-w-xs w-full pt-5 pb-4 bg-white">
         <div class="absolute top-0 right-0 -mr-12 pt-2">
           <button @click="changeStatus()" class="ml-1 flex items-center justify-center h-10 w-10 rounded-full focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
             <span class="sr-only">Close sidebar</span>
@@ -102,11 +102,19 @@
 </template>
 
 <script>
+import vClickOutside from 'v-click-outside'
+
 export default {
+  directives: {
+    clickOutside: vClickOutside.directive
+  },
   methods: {
     changeStatus() {
       this.$emit('changeStatus')
     },
+    externalClick (event) {
+      this.$emit('changeStatus')
+    }
   },
 }
 </script>
