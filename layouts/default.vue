@@ -3,7 +3,7 @@
     <div class="relative bg-gray-50">
       <div class="relative bg-white shadow">
         <div class="max-w-7xl mx-auto px-4 sm:px-6">
-          <div class="flex justify-between items-center py-4 md:justify-start md:space-x-10">
+          <div class="flex justify-between items-center sm:py-4 lg:py-4 md:justify-start md:space-x-10">
             <div class="w-0 flex-1 flex">
               <nuxt-link :to="{ name: 'index' }" class="inline-flex hidden md:flex">
                 <img class="h-8 w-auto sm:h-10" src="https://tailwindui.com/img/logos/v1/workflow-mark-on-white.svg" alt="Workflow">
@@ -15,9 +15,9 @@
                 </svg>
               </button>
               <nav class="ml-10 hidden md:flex space-x-10">
-                <nuxt-link :to="{ name: 'index' }" class="text-gray-500 inline-flex items-center space-x-2 text-base leading-6 font-medium hover:text-gray-900 transition ease-in-out duration-150">
+                <button @click="manMenuPopup = !manMenuPopup;" class="group bg-white rounded-md text-gray-500 inline-flex items-center text-base font-medium hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                   Hommes
-                </nuxt-link>
+                </button>
                 <nuxt-link :to="{ name: 'index' }" class="text-gray-500 inline-flex items-center space-x-2 text-base leading-6 font-medium hover:text-gray-900 transition ease-in-out duration-150">
                   Femmes
                 </nuxt-link>
@@ -63,6 +63,7 @@
             From: "opacity-100 scale-100"
             To: "opacity-0 scale-95"
         -->
+
         <div v-if="mobileMenuPopup">
           <MobileMenu @changeStatus="mobileMenuPopup = false"/>
         </div>
@@ -70,11 +71,17 @@
       </div>
 
       <main class="lg:relative">
+
+        <div v-if="manMenuPopup">
+          <ManMenu @changeStatus="manMenuPopup = false"/>
+        </div>
+
         <Nuxt />
       </main>
 
     </div>
     <footer class="bg-white">
+      <CookieBox />
       <div class="max-w-screen-xl mx-auto py-12 px-4 sm:px-6 lg:py-16 lg:px-8">
         <div class="pb-8 xl:grid xl:grid-cols-5 xl:gap-8">
           <div class="grid grid-cols-2 gap-8 xl:col-span-4">
@@ -301,12 +308,15 @@
 
 <script>
 import MobileMenu from '@/components/mobileMenu'
+import ManMenu from '@/components/manMenu'
+import CookieBox from '@/components/cookieBox'
 
 export default {
-  components: { MobileMenu },
+  components: { MobileMenu, ManMenu, CookieBox },
   data() {
     return {
       mobileMenuPopup: false,
+      manMenuPopup: false,
     };
   },
 }
