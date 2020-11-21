@@ -3,7 +3,7 @@
     <div class="relative bg-gray-50">
       <div class="relative bg-white shadow">
         <div class="max-w-7xl mx-auto px-4 sm:px-6">
-          <div class="flex justify-between items-center sm:py-4 lg:py-4 md:justify-start md:space-x-10">
+          <div class="flex justify-between items-center py-2 md:justify-start md:space-x-10">
             <div class="w-0 flex-1 flex">
               <nuxt-link :to="{ name: 'index' }" class="inline-flex hidden md:flex">
                 <img class="h-8 w-auto sm:h-10" src="https://tailwindui.com/img/logos/v1/workflow-mark-on-white.svg" alt="Workflow">
@@ -77,11 +77,11 @@
         </div>
 
         <Nuxt />
+        <CookieBox />
       </main>
 
     </div>
     <footer class="bg-white">
-      <CookieBox />
       <div class="max-w-screen-xl mx-auto py-12 px-4 sm:px-6 lg:py-16 lg:px-8">
         <div class="pb-8 xl:grid xl:grid-cols-5 xl:gap-8">
           <div class="grid grid-cols-2 gap-8 xl:col-span-4">

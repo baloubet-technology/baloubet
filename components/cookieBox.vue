@@ -1,8 +1,7 @@
 <template>
   <IfBot>
     <CookieConsent
-      message="We use Cookies for user analysis and on-page improvements!"
-      link-label="Learn about cookies"
+      message="Do you likes coockies? 🍪 We use coockies to ensure you get the best experience on our website."
     />
   </IfBot>
 </template>
@@ -25,11 +24,10 @@ export default {
   align-items: center;
   align-self: center;
   justify-content: center;
-  border-bottom: 1px solid white;
-  color: white;
+  color: black;
 }
 .cookie-consent button {
-  border: 1px solid white;
+  border: 1px solid black;
   padding: 10px;
   margin-left: 20px;
   min-width: 140px;
