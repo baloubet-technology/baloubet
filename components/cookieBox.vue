@@ -24,6 +24,7 @@ export default {
   align-items: center;
   align-self: center;
   justify-content: center;
+  border-top: 1px solid gray;
   color: black;
 }
 .cookie-consent button {

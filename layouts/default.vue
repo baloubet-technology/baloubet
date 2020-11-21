@@ -77,7 +77,9 @@
         </div>
 
         <Nuxt />
-        <CookieBox />
+        <div class="grax_topbar w-full fixed bottom-0 left-0 z-10 bg-white">
+          <CookieBox />
+        </div>
       </main>
 
     </div>
