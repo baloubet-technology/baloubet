@@ -15,21 +15,21 @@
                 </svg>
               </button>
               <nav class="ml-10 hidden md:flex space-x-10">
-                <button @click="manMenuPopup = !manMenuPopup;" class="group bg-white rounded-md text-gray-500 inline-flex items-center text-base font-medium hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                <button @click="desktopMenuPopup = !desktopMenuPopup; search(1);" class="group bg-white rounded-md text-gray-500 inline-flex items-center text-base font-medium hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                   Hommes
                 </button>
-                <nuxt-link :to="{ name: 'index' }" class="text-gray-500 inline-flex items-center space-x-2 text-base leading-6 font-medium hover:text-gray-900 transition ease-in-out duration-150">
+                <button @click="desktopMenuPopup = !desktopMenuPopup; search(2);" class="group bg-white rounded-md text-gray-500 inline-flex items-center text-base font-medium hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                   Femmes
-                </nuxt-link>
-                <nuxt-link :to="{ name: 'brands' }" class="text-gray-500 inline-flex items-center space-x-2 text-base leading-6 font-medium hover:text-gray-900 transition ease-in-out duration-150">
+                </button>
+                <button @click="desktopMenuPopup = !desktopMenuPopup; search(3);" class="group bg-white rounded-md text-gray-500 inline-flex items-center text-base font-medium hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                   Marques
-                </nuxt-link>
-                <nuxt-link :to="{ name: 'categories' }" class="text-gray-500 inline-flex items-center space-x-2 text-base leading-6 font-medium hover:text-gray-900 transition ease-in-out duration-150">
+                </button>
+                <button @click="desktopMenuPopup = !desktopMenuPopup; search(4);" class="group bg-white rounded-md text-gray-500 inline-flex items-center text-base font-medium hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                   Catégories
-                </nuxt-link>
-                <nuxt-link :to="{ name: 'shops' }" class="text-gray-500 inline-flex items-center space-x-2 text-base leading-6 font-medium hover:text-gray-900 transition ease-in-out duration-150">
+                </button>
+                <button @click="desktopMenuPopup = !desktopMenuPopup; search(5);" class="group bg-white rounded-md text-gray-500 inline-flex items-center text-base font-medium hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                   Boutiques
-                </nuxt-link>
+                </button>
               </nav>
             </div>
             <div class="-my-2 md:hidden">
@@ -64,16 +64,16 @@
             To: "opacity-0 scale-95"
         -->
 
-        <div v-if="mobileMenuPopup">
-          <MobileMenu @changeStatus="mobileMenuPopup = false"/>
+        <div>
+          <MobileMenu v-if="mobileMenuPopup" @changeStatus="mobileMenuPopup = false"/>
         </div>
 
       </div>
 
       <main class="lg:relative">
 
-        <div v-if="manMenuPopup">
-          <ManMenu @changeStatus="manMenuPopup = false"/>
+        <div>
+          <DesktopMenu v-if="desktopMenuPopup" :id="id" @changeStatus="desktopMenuPopup = false"/>
         </div>
 
         <Nuxt />
@@ -309,17 +309,23 @@
 </template>
 
 <script>
-import MobileMenu from '@/components/mobileMenu'
-import ManMenu from '@/components/manMenu'
 import CookieBox from '@/components/cookieBox'
+import DesktopMenu from '@/components/desktopMenu'
+import MobileMenu from '@/components/mobileMenu'
 
 export default {
-  components: { MobileMenu, ManMenu, CookieBox },
+  components: { CookieBox, DesktopMenu, MobileMenu },
   data() {
     return {
+      id: null,
+      desktopMenuPopup: false,
       mobileMenuPopup: false,
-      manMenuPopup: false,
     };
+  },
+  methods: {
+    search: function(btn) {
+      this.id = btn
+    }
   },
 }
 </script>

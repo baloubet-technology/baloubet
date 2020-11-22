@@ -1,5 +1,5 @@
 <template>
-  <div class="border-t z-0 relative">
+  <div v-click-outside="externalClick" class="border-t z-0 relative">
     <div class="absolute inset-x-0 transform shadow-lg">
       <div class="absolute inset-0 flex" aria-hidden="true">
         <div class="bg-white w-1/2"></div>
@@ -7,10 +7,22 @@
       </div>
       <div class="relative max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2">
         <nav class="grid gap-y-10 px-4 py-8 bg-white sm:grid-cols-2 sm:gap-x-8 sm:py-12 sm:px-6 lg:px-8 xl:pr-12" aria-labelledby="solutionsHeading">
-          <h2 id="solutionsHeading" class="sr-only">Solutions menu</h2>
+          <h2 id="solutionsHeading" class="sr-only">Solutions man</h2>
           <div>
-            <h3 class="text-sm font-medium tracking-wide text-gray-500 uppercase">
-              Company
+            <h3 v-if="this.$props.id == 1" class="text-sm font-medium tracking-wide text-gray-500 uppercase">
+              Hommes
+            </h3>
+            <h3 v-else-if="this.$props.id == 2" class="text-sm font-medium tracking-wide text-gray-500 uppercase">
+              Femmes
+            </h3>
+            <h3 v-else-if="this.$props.id == 3" class="text-sm font-medium tracking-wide text-gray-500 uppercase">
+              Marques
+            </h3>
+            <h3 v-else-if="this.$props.id == 4" class="text-sm font-medium tracking-wide text-gray-500 uppercase">
+              Catégories
+            </h3>
+            <h3 v-else-if="this.$props.id == 5" class="text-sm font-medium tracking-wide text-gray-500 uppercase">
+              Boutiques
             </h3>
             <ul class="mt-5 space-y-6">
               <li class="flow-root">
@@ -157,3 +169,19 @@
     </div>
   </div>
 </template>
+
+<script>
+import vClickOutside from 'v-click-outside'
+
+export default {
+  props: ['id'],
+  directives: {
+    clickOutside: vClickOutside.directive
+  },
+  methods: {
+    externalClick (event) {
+      this.$emit('changeStatus')
+    }
+  },
+}
+</script>
