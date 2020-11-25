@@ -4,12 +4,29 @@
       <div class="max-w-7xl mx-auto py-16 px-4 sm:px-6 lg:py-24 lg:px-8 lg:grid lg:grid-cols-3 lg:gap-x-8">
         <div>
           <h2 class="text-base font-semibold text-indigo-600 uppercase tracking-wide">Everything you need</h2>
-          <p class="mt-2 text-3xl font-extrabold text-gray-900">Brand</p>
-          <ais-menu-select attribute="brand" />
+          <p class="mt-2 text-3xl font-extrabold text-gray-900">Shops</p>
+          <ais-menu-select attribute="organization">
+            <select
+              class="mt-2 appearance-none block w-full bg-white border border-gray-300 rounded-md py-2 pl-3 pr-10 text-base leading-6 text-gray-900 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"
+              slot-scope="{ items, canRefine, refine }"
+              :disabled="!canRefine"
+              @change="refine($event.currentTarget.value)"
+            >
+              <option value="">All shops</option>
+              <option
+                v-for="item in items"
+                :key="item.value"
+                :value="item.value"
+                :selected="item.isRefined"
+              >
+                {{ item.label }}
+              </option>
+            </select>
+          </ais-menu-select>
           <p class="mt-4 text-lg text-gray-500">Ac euismod vel sit maecenas id pellentesque eu sed consectetur. Malesuada adipiscing sagittis vel nulla nec.</p>
           <div class="mt-8">
             <ais-refinement-list
-              attribute="tag"
+              attribute="category"
               searchable
               show-more
             >
@@ -25,7 +42,6 @@
                   searchForItems
                 }"
               >
-                <input @input="searchForItems($event.currentTarget.value)">
                 <ul>
                   <li v-if="isFromSearch && !items.length">No results.</li>
                   <li v-for="item in items" :key="item.value">
@@ -34,17 +50,10 @@
                       :style="{ fontWeight: item.isRefined ?  'bold' : '' }"
                       @click.prevent="refine(item.value)"
                     >
-                      <ais-highlight attribute="item" :hit="item"/>
-                      ({{ item.count.toLocaleString() }})
+                      <h1>{{ item.label }}</h1>
                     </a>
                   </li>
                 </ul>
-                <button
-                  @click="toggleShowMore"
-                  :disabled="!canToggleShowMore"
-                >
-                  {{ !isShowingMore ? 'Show more' : 'Show less'}}
-                </button>
               </div>
             </ais-refinement-list>
           </div>

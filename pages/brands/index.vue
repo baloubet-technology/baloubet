@@ -1,76 +1,152 @@
 <template>
-  <div>
-    <div class="max-w-screen-xl mx-auto py-16 px-4 sm:px-6 lg:py-24 lg:px-8">
-      <div class="max-w-3xl mx-auto text-center">
-        <h1 class="text-3xl leading-9 font-extrabold text-gray-900 mb-4">Marques</h1>
-        <div class="relative rounded-md shadow-sm">
-          <div
-            class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none"
-          >
-            <svg
-              class="mr-3 h-4 w-4 text-gray-400"
-              viewBox="0 0 20 20"
-              fill="currentColor"
+  <ais-instant-search-ssr>
+    <div>
+      <div class="max-w-7xl mx-auto py-16 px-4 sm:px-6 lg:py-24 lg:px-8 lg:grid lg:grid-cols-3 lg:gap-x-8">
+        <div>
+          <h2 class="text-base font-semibold text-indigo-600 uppercase tracking-wide">Everything you need</h2>
+          <p class="mt-2 text-3xl font-extrabold text-gray-900">Brands</p>
+          <ais-menu-select attribute="brand">
+            <select
+              class="mt-2 appearance-none block w-full bg-white border border-gray-300 rounded-md py-2 pl-3 pr-10 text-base leading-6 text-gray-900 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"
+              slot-scope="{ items, canRefine, refine }"
+              :disabled="!canRefine"
+              @change="refine($event.currentTarget.value)"
             >
-              <path
-                fill-rule="evenodd"
-                d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
-                clip-rule="evenodd"
-              />
-            </svg>
+              <option value="">All brands</option>
+              <option
+                v-for="item in items"
+                :key="item.value"
+                :value="item.value"
+                :selected="item.isRefined"
+              >
+                {{ item.label }}
+              </option>
+            </select>
+          </ais-menu-select>
+          <p class="mt-4 text-lg text-gray-500">Ac euismod vel sit maecenas id pellentesque eu sed consectetur. Malesuada adipiscing sagittis vel nulla nec.</p>
+          <div class="mt-8">
+            <ais-refinement-list
+              attribute="tag"
+              searchable
+              show-more
+            >
+              <div
+                slot-scope="{
+                  items,
+                  isShowingMore,
+                  isFromSearch,
+                  canToggleShowMore,
+                  refine,
+                  createURL,
+                  toggleShowMore,
+                  searchForItems
+                }"
+              >
+                <ul>
+                  <li v-if="isFromSearch && !items.length">No results.</li>
+                  <li v-for="item in items" :key="item.value">
+                    <a
+                      :href="createURL(item)"
+                      :style="{ fontWeight: item.isRefined ?  'bold' : '' }"
+                      @click.prevent="refine(item.value)"
+                    >
+                      <ais-highlight attribute="item" :hit="item"/>
+                      ({{ item.count.toLocaleString() }})
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </ais-refinement-list>
           </div>
-          <input
-            id="search"
-            class="form-input block w-full pl-9 sm:text-sm sm:leading-5"
-            placeholder="Search"
-          />
         </div>
-        <p class="mt-4 text-lg leading-7 text-gray-500">Vous pouvez sélectionner une marque pour retrouver les produits disponibles à la vente par l'ensemble nos vendeurs sur Baloubet.</p>
-      </div>
-      <div class="pt-2 pb-6 md:py-6">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
-          <ul class="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+        <div class="mt-12 lg:mt-0 lg:col-span-2">
+          <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
+            <ais-hits>
+              <ul slot-scope="{ items }" class="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3">
 
-            <li v-for="brand in allBrands" :key="brand.id" :value="brand.id" class="col-span-1 flex flex-col text-center">
-              <nuxt-link :to="{ name: 'brands-eid', params: { eid: brand.id }}">
-                <div class="-mt-px flex">
-                  <div class="w-0 flex-1 flex">
-                    <div class="relative -mr-px w-0 flex-1 inline-flex items-center justify-center py-2 text-sm leading-5 text-gray-700 font-medium border border-transparent rounded-bl-lg rounded-br-lg hover:text-gray-500 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 focus:z-10 transition ease-in-out duration-150">
-                      <dt class="text-lg leading-6 font-medium text-gray-900">{{ brand.name }}</dt>
+
+                <li v-for="item in items" :key="item.objectID">
+
+                  <div class="max-w-xs bg-white shadow-lg rounded-lg overflow-hidden">
+
+                      <div class="px-4 py-2">
+                        <p class="text-gray-900 font-bold uppercase">{{ limit(item.name, 18) }}</p>
+                        <p class="text-gray-600 text-sm mt-1">{{ limit(item.description, 50) }}</p>
+                      </div>
+                      <img class="h-56 w-full object-cover mt-2" :src="item.picture">
+
+                    <div class="flex items-center justify-between px-4 py-2 bg-gray-900">
+                      <h1 class="text-gray-200 font-bold text-xl">50.98 €</h1>
+                      <button class="px-3 py-1 bg-gray-200 text-sm text-gray-900 font-semibold rounded">Add to card</button>
                     </div>
                   </div>
-                </div>
-              </nuxt-link>
-            </li>
 
-          </ul>
+                </li>
+
+
+              </ul>
+            </ais-hits>
+          </div>
         </div>
       </div>
     </div>
-  </div>
+    <ais-pagination />
+  </ais-instant-search-ssr>
 </template>
 
 <script>
-import gql from "graphql-tag";
+import {
+  AisInstantSearchSsr,
+  AisRefinementList,
+  AisHits,
+  AisHighlight,
+  AisSearchBox,
+  AisStats,
+  AisPagination,
+  createServerRootMixin,
+  AisMenuSelect,
+} from 'vue-instantsearch';
+
+import algoliasearch from 'algoliasearch/lite';
+
+const searchClient = algoliasearch(
+  'OQKR7DERMO',
+  '12cfb689e4a92ed7faba3e457be97e2b'
+);
 
 export default {
-  data() {
-    return {
-      allBrands: [],
-      errors: [],
+  mixins: [
+    createServerRootMixin({
+      searchClient,
+      indexName: 'products',
+    }),
+  ],
+  serverPrefetch() {
+    return this.instantsearch.findResultsState(this).then(algoliaState => {
+      this.$ssrContext.nuxt.algoliaState = algoliaState;
+    });
+  },
+  beforeMount() {
+    const results =
+      this.$nuxt.context.nuxtState.algoliaState || window.__NUXT__.algoliaState;
+
+    this.instantsearch.hydrate(results);
+  },
+  components: {
+    AisInstantSearchSsr,
+    AisRefinementList,
+    AisHits,
+    AisHighlight,
+    AisSearchBox,
+    AisStats,
+    AisPagination,
+    AisMenuSelect,
+  },
+  methods: {
+    limit(str, length) {
+      if (str.length < length) return str
+      return `${str.substr(0, length)}...`
     }
   },
-  apollo: {
-    allBrands: {
-      query: gql`
-        query {
-          allBrands {
-            id
-            name
-          }
-        }
-      `
-    },
-  }
-}
+};
 </script>
