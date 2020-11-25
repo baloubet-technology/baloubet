@@ -5,9 +5,48 @@
         <div>
           <h2 class="text-base font-semibold text-indigo-600 uppercase tracking-wide">Everything you need</h2>
           <p class="mt-2 text-3xl font-extrabold text-gray-900">Brand</p>
+          <ais-menu-select attribute="brand" />
           <p class="mt-4 text-lg text-gray-500">Ac euismod vel sit maecenas id pellentesque eu sed consectetur. Malesuada adipiscing sagittis vel nulla nec.</p>
           <div class="mt-8">
-            <ais-refinement-list attribute="brand" />
+            <ais-refinement-list
+              attribute="tag"
+              searchable
+              show-more
+            >
+              <div
+                slot-scope="{
+                  items,
+                  isShowingMore,
+                  isFromSearch,
+                  canToggleShowMore,
+                  refine,
+                  createURL,
+                  toggleShowMore,
+                  searchForItems
+                }"
+              >
+                <input @input="searchForItems($event.currentTarget.value)">
+                <ul>
+                  <li v-if="isFromSearch && !items.length">No results.</li>
+                  <li v-for="item in items" :key="item.value">
+                    <a
+                      :href="createURL(item)"
+                      :style="{ fontWeight: item.isRefined ?  'bold' : '' }"
+                      @click.prevent="refine(item.value)"
+                    >
+                      <ais-highlight attribute="item" :hit="item"/>
+                      ({{ item.count.toLocaleString() }})
+                    </a>
+                  </li>
+                </ul>
+                <button
+                  @click="toggleShowMore"
+                  :disabled="!canToggleShowMore"
+                >
+                  {{ !isShowingMore ? 'Show more' : 'Show less'}}
+                </button>
+              </div>
+            </ais-refinement-list>
           </div>
         </div>
         <div class="mt-12 lg:mt-0 lg:col-span-2">
@@ -55,6 +94,7 @@ import {
   AisStats,
   AisPagination,
   createServerRootMixin,
+  AisMenuSelect,
 } from 'vue-instantsearch';
 
 import algoliasearch from 'algoliasearch/lite';
@@ -90,6 +130,7 @@ export default {
     AisSearchBox,
     AisStats,
     AisPagination,
+    AisMenuSelect,
   },
   methods: {
     limit(str, length) {
