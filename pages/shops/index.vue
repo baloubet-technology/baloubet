@@ -1,130 +1,101 @@
 <template>
-  <div>
-    <div class="max-w-screen-xl mx-auto py-16 px-4 sm:px-6 lg:py-24 lg:px-8">
-      <div class="max-w-3xl mx-auto text-center">
-        <h1 class="text-3xl leading-9 font-extrabold text-gray-900 mb-4">Boutiques</h1>
-        <div class="relative rounded-md shadow-sm">
-          <div
-            class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none"
-          >
-            <svg
-              class="mr-3 h-4 w-4 text-gray-400"
-              viewBox="0 0 20 20"
-              fill="currentColor"
-            >
-              <path
-                fill-rule="evenodd"
-                d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
-                clip-rule="evenodd"
-              />
-            </svg>
+  <ais-instant-search-ssr>
+    <div>
+      <div class="max-w-7xl mx-auto py-16 px-4 sm:px-6 lg:py-24 lg:px-8 lg:grid lg:grid-cols-3 lg:gap-x-8">
+        <div>
+          <h2 class="text-base font-semibold text-indigo-600 uppercase tracking-wide">Everything you need</h2>
+          <p class="mt-2 text-3xl font-extrabold text-gray-900">Brand</p>
+          <p class="mt-4 text-lg text-gray-500">Ac euismod vel sit maecenas id pellentesque eu sed consectetur. Malesuada adipiscing sagittis vel nulla nec.</p>
+          <div class="mt-8">
+            <ais-refinement-list attribute="brand" />
           </div>
-          <input
-            id="search"
-            class="form-input block w-full pl-9 sm:text-sm sm:leading-5"
-            placeholder="Search"
-          />
         </div>
-        <p class="mt-4 text-lg leading-7 text-gray-500">Vous pouvez sélectionner une boutique pour retrouver l'ensemble de ses produits disponibles à la vente sur Baloubet.</p>
+        <div class="mt-12 lg:mt-0 lg:col-span-2">
+          <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
+            <ais-hits>
+              <ul slot-scope="{ items }" class="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3">
+
+
+                <li v-for="item in items" :key="item.objectID">
+
+                  <div class="max-w-xs bg-white shadow-lg rounded-lg overflow-hidden">
+
+                      <div class="px-4 py-2">
+                        <p class="text-gray-900 font-bold uppercase">{{ limit(item.name, 18) }}</p>
+                        <p class="text-gray-600 text-sm mt-1">{{ limit(item.description, 50) }}</p>
+                      </div>
+                      <img class="h-56 w-full object-cover mt-2" :src="item.picture">
+
+                    <div class="flex items-center justify-between px-4 py-2 bg-gray-900">
+                      <h1 class="text-gray-200 font-bold text-xl">50.98 €</h1>
+                      <button class="px-3 py-1 bg-gray-200 text-sm text-gray-900 font-semibold rounded">Add to card</button>
+                    </div>
+                  </div>
+
+                </li>
+
+
+              </ul>
+            </ais-hits>
+          </div>
+        </div>
       </div>
-      <dl class="mt-12 space-y-10 sm:space-y-0 sm:grid sm:grid-cols-2 sm:gap-x-6 sm:gap-y-12 lg:grid-cols-4 lg:gap-x-8">
-        <div class="flex space-x-3">
-          <!-- Heroicon name: check -->
-          <svg class="flex-shrink-0 h-6 w-6 text-green-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-          </svg>
-          <div class="space-y-2">
-            <dt class="text-lg leading-6 font-medium text-gray-900">Invite team members</dt>
-            <dd class="flex space-x-3 lg:py-0 lg:pb-4">
-              <span class="text-base leading-6 text-gray-500">Tempor tellus in aliquet eu et sit nulla tellus. Suspendisse est, molestie blandit quis ac. Lacus.</span>
-            </dd>
-          </div>
-        </div>
-        <div class="flex space-x-3">
-          <!-- Heroicon name: check -->
-          <svg class="flex-shrink-0 h-6 w-6 text-green-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-          </svg>
-          <div class="space-y-2">
-            <dt class="text-lg leading-6 font-medium text-gray-900">Notifications</dt>
-            <dd class="flex space-x-3">
-              <span class="text-base leading-6 text-gray-500">Ornare donec rhoncus vitae nisl velit, neque, mauris dictum duis. Nibh urna non parturient.</span>
-            </dd>
-          </div>
-        </div>
-        <div class="flex space-x-3">
-          <!-- Heroicon name: check -->
-          <svg class="flex-shrink-0 h-6 w-6 text-green-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-          </svg>
-          <div class="space-y-2">
-            <dt class="text-lg leading-6 font-medium text-gray-900">List view</dt>
-            <dd class="flex space-x-3">
-              <span class="text-base leading-6 text-gray-500">Etiam cras augue ornare pretium sit malesuada morbi orci, venenatis. Dictum lacus.</span>
-            </dd>
-          </div>
-        </div>
-        <div class="flex space-x-3">
-          <!-- Heroicon name: check -->
-          <svg class="flex-shrink-0 h-6 w-6 text-green-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-          </svg>
-          <div class="space-y-2">
-            <dt class="text-lg leading-6 font-medium text-gray-900">Boards</dt>
-            <dd class="flex space-x-3">
-              <span class="text-base leading-6 text-gray-500">Interdum quam pulvinar turpis tortor, egestas quis diam amet, natoque. Mauris sagittis.</span>
-            </dd>
-          </div>
-        </div>
-        <div class="flex space-x-3">
-          <!-- Heroicon name: check -->
-          <svg class="flex-shrink-0 h-6 w-6 text-green-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-          </svg>
-          <div class="space-y-2">
-            <dt class="text-lg leading-6 font-medium text-gray-900">Keyboard shortcuts</dt>
-            <dd class="flex space-x-3">
-              <span class="text-base leading-6 text-gray-500">Ullamcorper in ipsum ac feugiat. Senectus at aliquam vulputate mollis nec. In at risus odio.</span>
-            </dd>
-          </div>
-        </div>
-        <div class="flex space-x-3">
-          <!-- Heroicon name: check -->
-          <svg class="flex-shrink-0 h-6 w-6 text-green-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-          </svg>
-          <div class="space-y-2">
-            <dt class="text-lg leading-6 font-medium text-gray-900">Reporting</dt>
-            <dd class="flex space-x-3 lg:border-t-0 lg:py-0 lg:pb-4">
-              <span class="text-base leading-6 text-gray-500">Magna a vel sagittis aliquam eu amet. Et lorem auctor quam nunc odio. Sed bibendum.</span>
-            </dd>
-          </div>
-        </div>
-        <div class="flex space-x-3">
-          <!-- Heroicon name: check -->
-          <svg class="flex-shrink-0 h-6 w-6 text-green-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-          </svg>
-          <div class="space-y-2">
-            <dt class="text-lg leading-6 font-medium text-gray-900">Calendars</dt>
-            <dd class="flex space-x-3">
-              <span class="text-base leading-6 text-gray-500">Sed mi, dapibus turpis orci posuere integer. A porta viverra posuere adipiscing turpis.</span>
-            </dd>
-          </div>
-        </div>
-        <div class="flex space-x-3">
-          <!-- Heroicon name: check -->
-          <svg class="flex-shrink-0 h-6 w-6 text-green-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-          </svg>
-          <div class="space-y-2">
-            <dt class="text-lg leading-6 font-medium text-gray-900">Mobile app</dt>
-            <dd class="flex space-x-3">
-              <span class="text-base leading-6 text-gray-500">Quisque sapien nunc nisl eros. Facilisis sagittis maecenas id dignissim tristique proin sed.</span>
-            </dd>
-          </div>
-        </div>
-      </dl>
     </div>
-  </div>
+    <ais-pagination />
+  </ais-instant-search-ssr>
 </template>
+
+<script>
+import {
+  AisInstantSearchSsr,
+  AisRefinementList,
+  AisHits,
+  AisHighlight,
+  AisSearchBox,
+  AisStats,
+  AisPagination,
+  createServerRootMixin,
+} from 'vue-instantsearch';
+
+import algoliasearch from 'algoliasearch/lite';
+
+const searchClient = algoliasearch(
+  'OQKR7DERMO',
+  '12cfb689e4a92ed7faba3e457be97e2b'
+);
+
+export default {
+  mixins: [
+    createServerRootMixin({
+      searchClient,
+      indexName: 'products',
+    }),
+  ],
+  serverPrefetch() {
+    return this.instantsearch.findResultsState(this).then(algoliaState => {
+      this.$ssrContext.nuxt.algoliaState = algoliaState;
+    });
+  },
+  beforeMount() {
+    const results =
+      this.$nuxt.context.nuxtState.algoliaState || window.__NUXT__.algoliaState;
+
+    this.instantsearch.hydrate(results);
+  },
+  components: {
+    AisInstantSearchSsr,
+    AisRefinementList,
+    AisHits,
+    AisHighlight,
+    AisSearchBox,
+    AisStats,
+    AisPagination,
+  },
+  methods: {
+    limit(str, length) {
+      if (str.length < length) return str
+      return `${str.substr(0, length)}...`
+    }
+  },
+};
+</script>
