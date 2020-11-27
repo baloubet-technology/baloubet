@@ -76,7 +76,7 @@
 
                     <div class="flex items-center justify-between px-4 py-2 bg-gray-900">
                       <h1 class="text-gray-200 font-bold text-xl">50.98 €</h1>
-                      <button class="px-3 py-1 bg-gray-200 text-sm text-gray-900 font-semibold rounded">Add to card</button>
+                      <button class="px-3 py-1 bg-gray-200 text-sm text-gray-900 font-semibold rounded" @click="addToCart(item.name)">Add to card</button>
                     </div>
                   </div>
 
@@ -107,6 +107,7 @@ import {
 } from 'vue-instantsearch';
 
 import algoliasearch from 'algoliasearch/lite';
+import { mapMutations } from 'vuex'
 
 const searchClient = algoliasearch(
   'OQKR7DERMO',
@@ -145,7 +146,11 @@ export default {
     limit(str, length) {
       if (str.length < length) return str
       return `${str.substr(0, length)}...`
-    }
+    },
+    ...mapMutations({
+      addToCart: 'cart/add',
+      removeFromCart: 'cart/remove'
+    }),
   },
 };
 </script>

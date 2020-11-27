@@ -2,29 +2,7 @@
   <div>
     <div class="relative bg-gray-50">
 
-      <div v-if="bannerHeader" class="relative bg-indigo-600">
-        <div class="max-w-7xl mx-auto py-3 px-3 sm:px-6 lg:px-8">
-          <div class="pr-16 sm:text-center sm:px-16">
-            <p class="font-medium text-white">
-              <span class="md:hidden">
-                We announced a new product!
-              </span>
-              <span class="hidden md:inline">
-                Big news! We're excited to announce a brand new product.
-              </span>
-            </p>
-          </div>
-          <div class="absolute inset-y-0 right-0 pt-1 pr-1 flex items-start sm:pt-1 sm:pr-2 sm:items-start">
-            <button @click="bannerHeader = false" type="button" class="flex p-2 rounded-md hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-white">
-              <span class="sr-only">Dismiss</span>
-              <!-- Heroicon name: x -->
-              <svg class="h-6 w-6 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-              </svg>
-            </button>
-          </div>
-        </div>
-      </div>
+      <TheBannerHeader />
 
       <div class="relative bg-white shadow">
         <div class="max-w-7xl mx-auto px-4 sm:px-6">
@@ -77,43 +55,31 @@
             </div>
           </div>
 
-          <div class="relative z-0 flex-1 px-2 flex items-center justify-center sm:absolute sm:inset-0">
-            <div class="max-w-s w-full">
-              <div class="relative">
-                <div class="pointer-events-none absolute inset-y-0 left-0 pl-3 flex items-center">
-                  <!-- Heroicon name: search -->
-                  <svg class="flex-shrink-0 h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                    <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd" />
-                  </svg>
-                </div>
-                <input id="search" class="block w-full bg-white border border-gray-300 rounded-md py-2 pl-10 pr-3 text-sm placeholder-gray-500 focus:outline-none focus:text-gray-900 focus:placeholder-gray-400 focus:ring-1 focus:ring-gray-900 focus:border-gray-900 sm:text-sm" placeholder="Search" type="search">
-              </div>
-            </div>
-          </div>
+          <TheAlgoliaSearchInput />
 
-          <div class="flex overflow-x-scroll space-x-4 pt-2">
-            <span class="inline-flex items-center px-2.5 py-0.5 rounded-md text-sm font-medium bg-blue-100 text-blue-800 mb-2">
+          <div class="md:hidden flex overflow-x-scroll space-x-4 pt-2">
+            <span class="inline-flex items-center px-2.5 py-0.5 rounded-md text-sm font-medium bg-gray-100 text-gray-800 mb-2">
               clothing
             </span>
-            <span class="inline-flex items-center px-2.5 py-0.5 rounded-md text-sm font-medium bg-blue-100 text-blue-800 mb-2">
+            <span class="inline-flex items-center px-2.5 py-0.5 rounded-md text-sm font-medium bg-gray-100 text-gray-800 mb-2">
               shoes
             </span>
-            <span class="inline-flex items-center px-2.5 py-0.5 rounded-md text-sm font-medium bg-blue-100 text-blue-800 mb-2">
+            <span class="inline-flex items-center px-2.5 py-0.5 rounded-md text-sm font-medium bg-gray-100 text-gray-800 mb-2">
               bags
             </span>
-            <span class="inline-flex items-center px-2.5 py-0.5 rounded-md text-sm font-medium bg-blue-100 text-blue-800 mb-2">
+            <span class="inline-flex items-center px-2.5 py-0.5 rounded-md text-sm font-medium bg-gray-100 text-gray-800 mb-2">
               furniture
             </span>
-            <span class="inline-flex items-center px-2.5 py-0.5 rounded-md text-sm font-medium bg-blue-100 text-blue-800 mb-2">
+            <span class="inline-flex items-center px-2.5 py-0.5 rounded-md text-sm font-medium bg-gray-100 text-gray-800 mb-2">
               book
             </span>
-            <span class="inline-flex items-center px-2.5 py-0.5 rounded-md text-sm font-medium bg-blue-100 text-blue-800 mb-2">
+            <span class="inline-flex items-center px-2.5 py-0.5 rounded-md text-sm font-medium bg-gray-100 text-gray-800 mb-2">
               sport
             </span>
-            <span class="inline-flex items-center px-2.5 py-0.5 rounded-md text-sm font-medium bg-blue-100 text-blue-800 mb-2">
+            <span class="inline-flex items-center px-2.5 py-0.5 rounded-md text-sm font-medium bg-gray-100 text-gray-800 mb-2">
               electronic
             </span>
-            <span class="inline-flex items-center px-2.5 py-0.5 rounded-md text-sm font-medium bg-blue-100 text-blue-800 mb-2">
+            <span class="inline-flex items-center px-2.5 py-0.5 rounded-md text-sm font-medium bg-gray-100 text-gray-800 mb-2">
               beauty
             </span>
           </div>
@@ -148,7 +114,7 @@
     </div>
     <footer class="bg-white">
       <div class="grax_topbar w-full fixed bottom-0 left-0 z-10 bg-white">
-        <CookieBox />
+        <TheCookieBox />
       </div>
       <div class="max-w-screen-xl mx-auto py-12 px-4 sm:px-6 lg:py-16 lg:px-8">
         <div class="pb-8 xl:grid xl:grid-cols-5 xl:gap-8">
@@ -375,16 +341,14 @@
 </template>
 
 <script>
-import CookieBox from '@/components/cookieBox'
 import DesktopMenu from '@/components/desktopMenu'
 import MobileMenu from '@/components/mobileMenu'
 
 export default {
-  components: { CookieBox, DesktopMenu, MobileMenu },
+  components: { DesktopMenu, MobileMenu },
   data() {
     return {
       id: null,
-      bannerHeader: true,
       desktopMenuPopup: false,
       mobileMenuPopup: false,
     };
