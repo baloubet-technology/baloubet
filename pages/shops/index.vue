@@ -76,7 +76,7 @@
 
                     <div class="flex items-center justify-between px-4 py-2 bg-gray-900">
                       <h1 class="text-gray-200 font-bold text-xl">50.98 €</h1>
-                      <button class="px-3 py-1 bg-gray-200 text-sm text-gray-900 font-semibold rounded" @click="addToCart(item.name)">Add to card</button>
+                      <button class="px-3 py-1 bg-gray-200 text-sm text-gray-900 font-semibold rounded" @click="addToCart(item)">Add to card</button>
                     </div>
                   </div>
 
