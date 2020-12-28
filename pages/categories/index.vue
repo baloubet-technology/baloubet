@@ -1,11 +1,6 @@
 <template>
   <ais-instant-search-ssr>
-    <ais-index
-      index-name="products"
-      :query-parameters="{
-        filters: "brand: Dior"
-      }"
-    >
+
       <div>
         <div class="max-w-7xl mx-auto py-16 px-4 sm:px-6 lg:py-24 lg:px-8 lg:grid lg:grid-cols-3 lg:gap-x-8">
           <div>
@@ -97,13 +92,12 @@
         </div>
       </div>
       <ais-pagination />
-    </ais-index>
+
   </ais-instant-search-ssr>
 </template>
 
 <script>
 import {
-  AisIndex,
   AisInstantSearchSsr,
   AisRefinementList,
   AisHits,
@@ -141,7 +135,6 @@ export default {
     this.instantsearch.hydrate(results);
   },
   components: {
-    AisIndex,
     AisInstantSearchSsr,
     AisRefinementList,
     AisHits,
