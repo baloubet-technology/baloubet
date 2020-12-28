@@ -67,7 +67,7 @@
 
                 <li v-for="item in items" :key="item.objectID">
 
-                  <div v-if"item.tag === Jeans" class="max-w-xs bg-white shadow-lg rounded-lg overflow-hidden">
+                  <div v-if"item.tag === 'Jeans'" class="max-w-xs bg-white shadow-lg rounded-lg overflow-hidden">
 
                       <div class="px-4 py-2">
                         <p class="text-gray-900 font-bold uppercase">{{ limit(item.name, 18) }}</p>
