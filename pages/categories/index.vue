@@ -27,6 +27,7 @@
           <div class="mt-8">
             <ais-refinement-list
               attribute="tag"
+              searchable-placeholder="Jeans"
               searchable
               show-more
             >
