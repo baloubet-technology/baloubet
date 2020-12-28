@@ -141,6 +141,7 @@ export default {
     this.instantsearch.hydrate(results);
   },
   components: {
+    AisIndex,
     AisInstantSearchSsr,
     AisRefinementList,
     AisHits,
