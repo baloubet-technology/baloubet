@@ -1,102 +1,109 @@
 <template>
   <ais-instant-search-ssr>
-    <div>
-      <div class="max-w-7xl mx-auto py-16 px-4 sm:px-6 lg:py-24 lg:px-8 lg:grid lg:grid-cols-3 lg:gap-x-8">
-        <div>
-          <h2 class="text-base font-semibold text-indigo-600 uppercase tracking-wide">Everything you need</h2>
-          <p class="mt-2 text-3xl font-extrabold text-gray-900">Categories</p>
-          <ais-menu-select attribute="category">
-            <select
-              class="mt-2 appearance-none block w-full bg-white border border-gray-300 rounded-md py-2 pl-3 pr-10 text-base leading-6 text-gray-900 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"
-              slot-scope="{ items, canRefine, refine }"
-              :disabled="!canRefine"
-              @change="refine($event.currentTarget.value)"
-            >
-              <option value="">All categories</option>
-              <option
-                v-for="item in items"
-                :key="item.value"
-                :value="item.value"
-                :selected="item.isRefined"
+    <ais-index
+      index-name="products"
+      :query-parameters="{
+        filters: "brand: Dior"
+      }"
+    >
+      <div>
+        <div class="max-w-7xl mx-auto py-16 px-4 sm:px-6 lg:py-24 lg:px-8 lg:grid lg:grid-cols-3 lg:gap-x-8">
+          <div>
+            <h2 class="text-base font-semibold text-indigo-600 uppercase tracking-wide">Everything you need</h2>
+            <p class="mt-2 text-3xl font-extrabold text-gray-900">Categories</p>
+            <ais-menu-select attribute="category">
+              <select
+                class="mt-2 appearance-none block w-full bg-white border border-gray-300 rounded-md py-2 pl-3 pr-10 text-base leading-6 text-gray-900 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"
+                slot-scope="{ items, canRefine, refine }"
+                :disabled="!canRefine"
+                @change="refine($event.currentTarget.value)"
               >
-                {{ item.label }}
-              </option>
-            </select>
-          </ais-menu-select>
-          <p class="mt-4 text-lg text-gray-500">Ac euismod vel sit maecenas id pellentesque eu sed consectetur. Malesuada adipiscing sagittis vel nulla nec.</p>
-          <div class="mt-8">
-            <ais-refinement-list
-              attribute="tag"
-              searchable-placeholder="Jeans"
-              searchable
-              show-more
-            >
-              <div
-                slot-scope="{
-                  items,
-                  isShowingMore,
-                  isFromSearch,
-                  canToggleShowMore,
-                  refine,
-                  createURL,
-                  toggleShowMore,
-                  searchForItems
-                }"
+                <option value="">All categories</option>
+                <option
+                  v-for="item in items"
+                  :key="item.value"
+                  :value="item.value"
+                  :selected="item.isRefined"
+                >
+                  {{ item.label }}
+                </option>
+              </select>
+            </ais-menu-select>
+            <p class="mt-4 text-lg text-gray-500">Ac euismod vel sit maecenas id pellentesque eu sed consectetur. Malesuada adipiscing sagittis vel nulla nec.</p>
+            <div class="mt-8">
+              <ais-refinement-list
+                attribute="tag"
+                searchable
+                show-more
               >
-                <ul>
-                  <li v-if="isFromSearch && !items.length">No results.</li>
-                  <li v-for="item in items" :key="item.value">
-                    <a
-                      :href="createURL(item)"
-                      :style="{ fontWeight: item.isRefined ?  'bold' : '' }"
-                      @click.prevent="refine(item.value)"
-                    >
-                      <ais-highlight attribute="item" :hit="item"/>
-                      ({{ item.count.toLocaleString() }})
-                    </a>
-                  </li>
-                </ul>
-              </div>
-            </ais-refinement-list>
+                <div
+                  slot-scope="{
+                    items,
+                    isShowingMore,
+                    isFromSearch,
+                    canToggleShowMore,
+                    refine,
+                    createURL,
+                    toggleShowMore,
+                    searchForItems
+                  }"
+                >
+                  <ul>
+                    <li v-if="isFromSearch && !items.length">No results.</li>
+                    <li v-for="item in items" :key="item.value">
+                      <a
+                        :href="createURL(item)"
+                        :style="{ fontWeight: item.isRefined ?  'bold' : '' }"
+                        @click.prevent="refine(item.value)"
+                      >
+                        <ais-highlight attribute="item" :hit="item"/>
+                        ({{ item.count.toLocaleString() }})
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </ais-refinement-list>
+            </div>
           </div>
-        </div>
-        <div class="mt-12 lg:mt-0 lg:col-span-2">
-          <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
-            <ais-hits>
-              <ul slot-scope="{ items }" class="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3">
+          <div class="mt-12 lg:mt-0 lg:col-span-2">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
+              <ais-hits>
+                <ul slot-scope="{ items }" class="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3">
 
 
-                <li v-for="item in items" :key="item.objectID">
+                  <li v-for="item in items" :key="item.objectID">
 
-                  <div class="max-w-xs bg-white shadow-lg rounded-lg overflow-hidden">
+                    <div class="max-w-xs bg-white shadow-lg rounded-lg overflow-hidden">
 
-                      <div class="px-4 py-2">
-                        <p class="text-gray-900 font-bold uppercase">{{ limit(item.name, 18) }}</p>
-                        <p class="text-gray-600 text-sm mt-1">{{ limit(item.description, 50) }}</p>
+                        <div class="px-4 py-2">
+                          <p class="text-gray-900 font-bold uppercase">{{ limit(item.name, 18) }}</p>
+                          <p class="text-gray-600 text-sm mt-1">{{ limit(item.description, 50) }}</p>
+                        </div>
+                        <img class="h-56 w-full object-cover mt-2" :src="item.picture">
+
+                      <div class="flex items-center justify-between px-4 py-2 bg-gray-900">
+                        <h1 class="text-gray-200 font-bold text-xl">50.98 €</h1>
+                        <button class="px-3 py-1 bg-gray-200 text-sm text-gray-900 font-semibold rounded">Add to card</button>
                       </div>
-                      <img class="h-56 w-full object-cover mt-2" :src="item.picture">
-
-                    <div class="flex items-center justify-between px-4 py-2 bg-gray-900">
-                      <h1 class="text-gray-200 font-bold text-xl">50.98 €</h1>
-                      <button class="px-3 py-1 bg-gray-200 text-sm text-gray-900 font-semibold rounded">Add to card</button>
                     </div>
-                  </div>
 
-                </li>
+                  </li>
 
 
-              </ul>
-            </ais-hits>
+                </ul>
+              </ais-hits>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-    <ais-pagination />
+      <ais-pagination />
+    </ais-index>
   </ais-instant-search-ssr>
 </template>
 
 <script>
 import {
+  AisIndex,
   AisInstantSearchSsr,
   AisRefinementList,
   AisHits,
