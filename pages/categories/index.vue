@@ -65,7 +65,7 @@
               <ul slot-scope="{ items }" class="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3">
 
 
-                <li v-for="item in items" v-if"item.tag === 'Jeans'" :key="item.objectID">
+                <li v-for="item in items" :key="item.objectID">
 
                   <div class="max-w-xs bg-white shadow-lg rounded-lg overflow-hidden">
 
