@@ -27,7 +27,7 @@
             <p class="mt-4 text-lg text-gray-500">Ac euismod vel sit maecenas id pellentesque eu sed consectetur. Malesuada adipiscing sagittis vel nulla nec.</p>
             <div class="mt-8">
               <ais-refinement-list
-                attribute="tag"
+                attribute="tag_fr"
                 searchable
                 show-more
               >
